@@ -1,7 +1,12 @@
 var pidtree = require('pidtree')
 var pidusage = require('pidusage')
 
-module.exports = function (pid, cb) {
+module.exports = function (pid, options, cb) {
+  if (typeof options === 'function') {
+    callback = options
+    options = {}
+  }
+
   return new Promise(function (resolve, reject) {
     pidtree(pid, {root: true}, function (err, pids) {
       if (err) {
@@ -10,7 +15,7 @@ module.exports = function (pid, cb) {
         return
       }
 
-      pidusage(pids, function (err, stats) {
+      pidusage(pids, options, function (err, stats) {
         if (err) {
           cb && cb(err)
           reject(err)

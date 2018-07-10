@@ -16,6 +16,6 @@
   "license": "MIT",
   "dependencies": {
     "pidtree": "^0.1.1",
-    "pidusage": "^2.0.5"
+    "pidusage": "https://github.com/amitic/pidusage.git"
   }
 }
